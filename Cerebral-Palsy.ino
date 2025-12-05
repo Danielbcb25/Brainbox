@@ -1,3 +1,4 @@
+//define the Arduino ports
 #include <LiquidCrystal_I2C.h>
 #define Vermelho 8
 #define Verde 10
@@ -5,7 +6,7 @@
 #define BotaoVerd 3
 #define BotaoVer 2
 #define BotaoAzul 4
-#define BotaoRoxo 5
+#define BotaoAmarelo 5
 #define num1 13
 #define num2 12
 #define num3 6
@@ -27,6 +28,7 @@ int n3 = 0;
 int resultc = cent * 100 + dez * 10 + uni;
 int resultd = dez * 10 + uni;
 int fase = 1;
+// define the Pins with INPUT or OUTPUT
 void setup() {
   pinMode(Vermelho, OUTPUT);
   pinMode(Verde, OUTPUT);
@@ -34,7 +36,7 @@ void setup() {
   pinMode(BotaoVer, INPUT);
   pinMode(BotaoVerd, INPUT);
   pinMode(BotaoAzul, INPUT);
-  pinMode(BotaoRoxo, INPUT);
+  pinMode(BotaoAmarelo, INPUT);
   pinMode(num1, INPUT);
   pinMode(num2, INPUT);
   pinMode(num3, INPUT);
@@ -50,6 +52,7 @@ void setup() {
   digitalWrite(nn, HIGH);
 }
 void loop(){
+  //use the variable "modo" to choose which mode will be used ("modo" = 0 is the starting screen)
   if (modo == 0){
   	lcd.print("BrainBox");
   	delay(500);
@@ -64,6 +67,7 @@ void loop(){
     delay(1000);
     lcd.setCursor(0 ,0);
     a = 1;
+	// use the while and a flag to wait until the user press the button and switch the mode
     while(a == 1) {
     	if(digitalRead(num1) == 1) {
           	lcd.clear();
@@ -85,6 +89,7 @@ void loop(){
     	}
     }
 	}
+	// a color game with an RGB LED and four buttons
 	if (modo == 1) {
   			lcd.clear();
   			srand(analogRead(A3));
@@ -99,7 +104,7 @@ void loop(){
   			if (ran == 1){
   				digitalWrite(Vermelho, HIGH);
     			while(digitalRead(BotaoVerd) == 0 && digitalRead(BotaoVer) == 0 &&
-    		  		digitalRead(BotaoAzul) == 0 && digitalRead(BotaoRoxo) == 0){
+    		  		digitalRead(BotaoAzul) == 0 && digitalRead(BotaoAmarelo) == 0){
     	 	  		delay(1);
     				}
     		if(digitalRead(BotaoVer) == 1) {
@@ -117,7 +122,7 @@ void loop(){
   		}	
   		if (ran == 2){
   			digitalWrite(Verde, HIGH);
-    		while(digitalRead(BotaoVerd) ==  0 && digitalRead(BotaoVer) == 0 && digitalRead(BotaoAzul) == 0 && digitalRead(BotaoRoxo) == 0){
+    		while(digitalRead(BotaoVerd) ==  0 && digitalRead(BotaoVer) == 0 && digitalRead(BotaoAzul) == 0 && digitalRead(BotaoAmarelo) == 0){
     		  delay(1);
     		}
     		if(digitalRead(BotaoVerd) == 1) {
@@ -135,7 +140,7 @@ void loop(){
   		}	
   		if (ran == 3){
 			digitalWrite(Azul, HIGH);
-		    while(digitalRead(BotaoVerd) == 0 && digitalRead(BotaoVer) == 0 && digitalRead(BotaoAzul) == 0 && digitalRead(BotaoRoxo) == 0){
+		    while(digitalRead(BotaoVerd) == 0 && digitalRead(BotaoVer) == 0 && digitalRead(BotaoAzul) == 0 && digitalRead(BotaoAmarelo) == 0){
 		      	delay(1);
 		    }
 		    if(digitalRead(BotaoAzul) == 1) {
@@ -154,10 +159,10 @@ void loop(){
 		  if (ran == 4){
 		  	digitalWrite(Verde, HIGH);
 		   	digitalWrite(Vermelho, HIGH);
-		   	while(digitalRead(BotaoVerd) == 0 && digitalRead(BotaoVer) == 0 && digitalRead(BotaoAzul) == 0 && digitalRead(BotaoRoxo) == 0){
+		   	while(digitalRead(BotaoVerd) == 0 && digitalRead(BotaoVer) == 0 && digitalRead(BotaoAzul) == 0 && digitalRead(BotaoAmarelo) == 0){
 		   	  	delay(1);
 		    }
-		    if(digitalRead(BotaoRoxo) == 1) {
+		    if(digitalRead(BotaoAmarelo) == 1) {
 		    	digitalWrite(ss, LOW);
   				lcd.print("Acertou! :)");
               	delay(500);
@@ -177,6 +182,7 @@ void loop(){
   		delay(2000);
       	lcd.clear();
     }
+  //a game with numbers and buttons
   if(modo == 2) {
   	lcd.clear();
     srand(analogRead(A3));
