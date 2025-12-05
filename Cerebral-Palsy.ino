@@ -48,8 +48,8 @@ void setup() {
   lcd.setCursor(0, 0);
   lcd.setBacklight(1);
   lcd.init();
-  digitalWrite(ss, HIGH);
-  digitalWrite(nn, HIGH);
+  digitalWrite(ss, LOW);
+  digitalWrite(nn, LOW);
 }
 void loop(){
   //use the variable "modo" to choose which mode will be used ("modo" = 0 is the starting screen)
@@ -108,16 +108,16 @@ void loop(){
     	 	  		delay(1);
     				}
     		if(digitalRead(BotaoVer) == 1) {
-              	digitalWrite(ss, LOW);
+              	digitalWrite(ss, HIGH);
 				lcd.print("Acertou! :)");
               	delay(500);
-                digitalWrite(ss, HIGH);
+                digitalWrite(ss, LOW);
     		}
     		else {
-              	digitalWrite(nn, LOW);
+              	digitalWrite(nn, HIGH);
    		 	    lcd.print("Errou :C");
               	delay(500);
-              	digitalWrite(nn, HIGH);
+              	digitalWrite(nn, LOW);
     		}
   		}	
   		if (ran == 2){
@@ -163,16 +163,16 @@ void loop(){
 		   	  	delay(1);
 		    }
 		    if(digitalRead(BotaoAmarelo) == 1) {
-		    	digitalWrite(ss, LOW);
+		    	digitalWrite(ss, HIGH);
   				lcd.print("Acertou! :)");
               	delay(500);
-              	digitalWrite(ss, HIGH);
+              	digitalWrite(ss, LOW);
 		   	}
 		    else{
-		   		digitalWrite(nn, LOW);
+		   		digitalWrite(nn, HIGH);
   				lcd.print("Errou :C");
               	delay(500);
-              	digitalWrite(nn, HIGH);
+              	digitalWrite(nn, LOW);
 		    }
 		  	
   		}
@@ -225,21 +225,21 @@ void loop(){
     	if(n == uni){
     	  	lcd.clear();
     		lcd.print("Acertou! :)");
-    	  	digitalWrite(ss, LOW);
-    	  	delay(500);
     	  	digitalWrite(ss, HIGH);
+    	  	delay(500);
+    	  	digitalWrite(ss, LOW);
     	  	lcd.clear();
           	fase = 2;
     	}
     	else {
     	  	lcd.clear();
-    	  	digitalWrite(nn, LOW);
+    	  	digitalWrite(nn, HIGH);
     		lcd.print("Errou :(");
     	    lcd.setCursor(0, 1);
     	    lcd.print("Tente Novamente:");
     	    lcd.setCursor(0, 0);
     	  	delay(500);
-    	  	digitalWrite(nn, HIGH);
+    	  	digitalWrite(nn, LOW);
     	  	lcd.clear();
             fase = 1;
     	}
@@ -299,21 +299,21 @@ void loop(){
           	Serial.println(n * 10 + n2);
     	  	lcd.clear();
     		lcd.print("Acertou! :)");
-    	  	digitalWrite(ss, LOW);
-    	  	delay(500);
     	  	digitalWrite(ss, HIGH);
+    	  	delay(500);
+    	  	digitalWrite(ss, LOW);
     	  	lcd.clear();
           	fase = 3;
     	}
     	else {
     	  	lcd.clear();
-    	  	digitalWrite(nn, LOW);
+    	  	digitalWrite(nn, HIGH);
     		lcd.print("Errou :(");
     	    lcd.setCursor(0, 1);
     	    lcd.print("Tente Novamente:");
     	    lcd.setCursor(0, 0);
     	  	delay(500);
-    	  	digitalWrite(nn, HIGH);
+    	  	digitalWrite(nn, LOW);
     	  	lcd.clear();
             fase = 1;
     }
@@ -399,9 +399,9 @@ void loop(){
           	Serial.println(n * 100 + n2 * 10 + n3);
     	  	lcd.clear();
     		lcd.print("Acertou! :)");
-    	  	digitalWrite(ss, LOW);
-    	  	delay(500);
     	  	digitalWrite(ss, HIGH);
+    	  	delay(500);
+    	  	digitalWrite(ss, LOW);
     	  	lcd.clear();
           	fase = 4;
     	}
@@ -409,13 +409,13 @@ void loop(){
     	  	lcd.clear();
           Serial.println(n * 100 + n2 * 10 + n3);
 			Serial.println(resultc);
-    	  	digitalWrite(nn, LOW);
+    	  	digitalWrite(nn, HIGH);
     		lcd.print("Errou :(");
     	    lcd.setCursor(0, 1);
     	    lcd.print("Tente Novamente:");
     	    lcd.setCursor(0, 0);
     	  	delay(500);
-    	  	digitalWrite(nn, HIGH);
+    	  	digitalWrite(nn, LOW);
     	  	lcd.clear();
             fase = 1;
     }
